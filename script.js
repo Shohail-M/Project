@@ -209,3 +209,31 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollAnimations();
   initGalleryFilter();
 });
+
+// end
+function animateProgressBars() {
+  document.querySelectorAll(".progress-bar").forEach((bar) => {
+    const rect = bar.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      bar.classList.add("visible");
+      const fill = bar.querySelector(".fill");
+      const text = bar.querySelector(".progress-text");
+      const targetValue = parseInt(bar.getAttribute("data-width"));
+      fill.style.width = targetValue + "%";
+      text.style.opacity = 1;
+      let count = 0;
+      const interval = setInterval(() => {
+        if (count >= targetValue) {
+          text.textContent = targetValue + "%";
+          clearInterval(interval);
+        } else {
+          count++;
+          text.textContent = count + "%";
+        }
+      }, 15);
+    }
+  });
+}
+
+document.addEventListener("scroll", animateProgressBars);
+document.addEventListener("DOMContentLoaded", animateProgressBars);
