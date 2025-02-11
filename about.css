@@ -23,7 +23,7 @@ body {
 }
 .banner-img {
   width: 100vw;
-  height: 100%;
+  height: 400px;
 }
 
 .banner-overlay {
@@ -38,9 +38,7 @@ body {
 
 .banner-content {
   position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  bottom: 80px;
   flex-direction: column;
   display: flex;
   align-items: center;
@@ -72,10 +70,14 @@ header {
   overflow-x: hidden;
   padding: 160px 0 95px 0;
 }
-.hr {
+.hr-main {
   background-color: var(--bg-1);
 }
-
+.hr {
+  background-color: #3d423f;
+  height: 1px;
+  width: 100%;
+}
 /* end */
 .progress {
   background-color: var(--bg-1);
@@ -190,6 +192,13 @@ header {
   border-radius: 10px;
 }
 /* end */
+/* about card section start */
+.ab-card-content-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 .ab-card-sec {
   background-color: var(--bg-1);
   padding: 140px 0 65px 0;
@@ -199,28 +208,83 @@ header {
   align-items: center;
   justify-content: center;
   gap: 24px;
+  margin-top: 60px;
 }
 .about-card {
   position: relative;
   width: 100%;
   max-width: 282px;
   height: auto;
-  border-radius: 20px;
   overflow: hidden;
+}
+.about-card-img-container {
   position: relative;
+  overflow: hidden;
 }
 .about-card .about-card-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 20px;
+  z-index: -2;
+}
+
+.about-card:hover .about-card-hover {
+  bottom: 0;
 }
 .about-card-hover {
   position: absolute;
-  top: 0;
+  border-radius: 20px;
   left: 0;
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 8px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding-bottom: 20px;
+  bottom: -100%;
+  transition: bottom 0.3s ease-in-out;
 }
-.about-card-hover img {
+.about-card-hover div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--pure-white);
+  padding: 10px;
+  border-radius: 10px;
+  transition: background-color 0.2s ease-in-out;
+}
+.about-card-hover div:hover {
+  background-color: var(--primary-color);
+  z-index: 2 !important;
+}
+.about-card-hover div:hover svg path {
+  fill: #fff !important;
+}
+.about-card-content {
+  margin-top: 20px;
+}
+.about-card-content h3 {
+  color: var(--primary-color);
+  text-align: center;
+  font-family: "Bodoni MT";
+  font-size: 24px;
+  font-weight: 700;
+}
+.about-card-content p {
+  text-align: center;
+  font-size: var(--font-size-1);
+  font-weight: 400;
+  margin-top: 5px;
+}
+
+/* end */
+.about-page-faq {
+  padding: 80px 0 160px 0 !important;
+  background-color: var(--bg-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -579,7 +579,7 @@ header #btn:hover {
 /* end */
 
 /* Faq section start */
-#faq {
+.faq-hm-page {
   background-color: var(--bg-1);
   padding: 140px 0 160px 0;
   display: flex;
@@ -1081,6 +1081,13 @@ footer {
   .footer-container {
     flex-wrap: wrap;
   }
+  /* about page */
+  .progress-containers {
+    flex-direction: column;
+  }
+  .text-section {
+    width: 75%;
+  }
 }
 /* tablat device */
 @media screen and (max-width: 850px) {
@@ -1146,6 +1153,22 @@ footer {
   }
   .footer-bottom-links a {
     margin: 0 10px;
+  }
+  /* about page */
+  .text-section {
+    width: 100%;
+  }
+  .image-section {
+    width: 100%;
+    flex-direction: column;
+  }
+  .image-section :nth-child(2) {
+    width: 100%;
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+  }
+  .about-card-container {
+    flex-wrap: wrap;
   }
 }
 
