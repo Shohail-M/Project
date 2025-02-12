@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- top banner -->
+    <div class="top-banner">
+      <div class="banner">
+        <img
+          class="banner-img"
+          src="Images/About us/ash-edmonds-v0Qujn-zHJk-unsplash 1.jpg"
+          alt=""
+        />
+        <span class="banner-overlay"> </span>
+
+        <header class="ab-header">
+          <a href="index.html"><img src="Images/Homepage/Logo.png" alt="" /></a>
+          <nav>
+            <ul class="menu">
+              <svg
+                class="X-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 384 512"
+              >
+                <path
+                  d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+                />
+              </svg>
+              <li><a href="#" class="active">Home</a></li>
+              <li><a href="about.html">About us</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Packages</a></li>
+              <li><a href="#">blog</a></li>
+            </ul>
+          </nav>
+          <a href="#" id="btn">Make Appointment</a>
+          <svg
+            class="bar-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <path
+              d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM64 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L96 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"
+            />
+          </svg>
+        </header>
+        <span class="overlay"></span>
+
+        <div class="banner-content">
+          <h2>Gallery</h2>
+          <div class="path">
+            <a href="index.html">Home</a>
+            <img src="Images/About us/arrow.svg" alt="" />
+            <a href="about.html">Gallery</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- gallery section -->
+    <div class="imageGallery gallery-page">
+      <div class="container">
+        <div class="image-content">
+          <h4 class="h4">GALLERY</h4>
+          <h2>Our Recent Works</h2>
+          <div class="filter-container">
+            <button class="filter filter-active" data-filter="all">All</button>
+            <button class="filter" data-filter="wedding">Wedding</button>
+            <button class="filter" data-filter="event">Event</button>
+            <button class="filter" data-filter="adventure">Adventure</button>
+            <button class="filter" data-filter="product">Product</button>
+            <button class="filter" data-filter="fashion">Fashion</button>
+            <button class="filter" data-filter="travel">Travel</button>
+          </div>
+        </div>
+        <div class="image-box">
+          <div class="dream">
+            <div class="gallery-item" data-category="wedding">
+              <div class="plus">+</div>
+              <img src="Images/Homepage/Item_1.png" alt="Wedding Photo" />
+            </div>
+            <div class="gallery-item" data-category="product">
+              <div class="plus">+</div>
+              <img src="Images/Homepage/Item_4.png" alt="Product Photo" />
+            </div>
+            <div class="gallery-item" data-category="fashion">
+              <div class="plus">+</div>
+              <img src="Images/Homepage/Item_7.png" alt="Fashion Photo" />
+            </div>
+          </div>
+          <div class="dream">
+            <div class="gallery-item" data-category="event">
+              <div class="plus">+</div>
+              <img src="Images/Homepage/Item_2.png" alt="Event Photo" />
+            </div>
+            <div class="gallery-item" data-category="adventure">
+              <div class="plus">+</div>
+              <img src="Images/Homepage/Item_5.png" alt="Adventure Photo" />
+            </div>
+            <div class="gallery-item" data-category="travel">
+              <div class="plus">+</div>
+              <img src="Images/Homepage/Item_8.png" alt="Travel Photo" />
+            </div>
+          </div>
+          <div class="dream">
+            <div class="gallery-item" data-category="wedding">
+              <div class="plus">+</div>
+              <img src="Images/Homepage/Item_3.png" alt="Wedding Photo" />
+            </div>
+            <div class="gallery-item" data-category="event">
+              <div class="plus">+</div>
+              <img src="Images/Homepage/Item_6.png" alt="Event Photo" />
+            </div>
+            <div class="gallery-item" data-category="adventure">
+              <div class="plus">+</div>
+              <img src="Images/Homepage/Item_9.png" alt="Adventure Photo" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-container">
+          <div class="footer-logo-section">
+            <div class="footer-logo">
+              <img src="Images/Homepage/Logo.png" alt="Pictorlee Logo" />
+            </div>
+            <div class="footer-contact">
+              <p>
+                <img src="Images/Homepage/phone-icon.svg" alt="Phone" /> +1 2345
+                6789 123
+              </p>
+              <p>
+                <img src="Images/Homepage/email-icon.svg" alt="Email" />
+                example@email.com
+              </p>
+              <p>
+                <img src="Images/Homepage/location-icon.svg" alt="Location" />
+                College ST. Broklyn, NY 112233
+              </p>
+            </div>
+          </div>
+
+          <hr />
+
+          <div class="footer-links">
+            <h5>Useful Link</h5>
+            <ul>
+              <li><a class="footer-active-link" href="#">HOME</a></li>
+              <li><a href="#">ABOUT US</a></li>
+              <li><a href="#">SERVICES</a></li>
+              <li><a href="#">EVENT</a></li>
+              <li><a href="#">CONTACT US</a></li>
+              <li><a href="#">PRICING</a></li>
+              <li><a href="#">BLOG</a></li>
+            </ul>
+          </div>
+
+          <hr />
+
+          <div class="footer-newsletter">
+            <h5>Subscribe Our News Letter For Offer & Update</h5>
+            <form class="newsletter-form">
+              <input type="email" required />
+              <button type="submit">SUBSCRIBE</button>
+            </form>
+            <div class="social-icons">
+              <a href="#" class="footer-active"
+                ><img src="Images/Homepage/facebook.svg" alt="Facebook"
+              /></a>
+              <a href="#"
+                ><img src="Images/Homepage/instagram.svg" alt="Instagram"
+              /></a>
+              <a href="#"
+                ><img src="Images/Homepage/linkedin.svg" alt="LinkedIn"
+              /></a>
+              <a href="#"
+                ><img src="Images/Homepage/tiwtter.svg" alt="Twitter"
+              /></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>Copyright <span>Pictorlee</span> © 2025 All Right Reserved</p>
+          <div class="footer-bottom-links">
+            <ul>
+              <li><a href="#">Terms & Conditions</a></li>
+              <li class="list"><a href="#">Privacy Policy</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

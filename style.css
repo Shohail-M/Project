@@ -480,6 +480,9 @@ header #btn:hover {
   background-color: var(--bg-2);
   padding: 140px 0 160px 0;
 }
+.gallery-page {
+  background-color: var(--bg-1) !important;
+}
 
 .image-content {
   display: flex;
@@ -1319,4 +1322,290 @@ footer {
 }
 .delay-5 {
   transition-delay: 0.5s;
+}
+
+/* 
+  * about page banner start
+ */
+.banner {
+  position: relative;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.banner-img {
+  width: 100vw;
+  height: 400px;
+}
+
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #040f15;
+  opacity: 0.8;
+}
+
+.banner-content {
+  position: absolute;
+  bottom: 80px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.path {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.path a {
+  padding: 10px;
+  background-color: transparent;
+  color: var(--pure-white);
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+}
+.ab-header {
+  position: absolute;
+  width: 100%;
+  top: 40px;
+}
+.about-page {
+  background-color: var(--bg-1);
+  padding: 160px 0;
+  overflow-x: hidden;
+  padding: 160px 0 95px 0;
+}
+.hr-main {
+  background-color: var(--bg-1);
+}
+.hr {
+  background-color: #3d423f;
+  height: 1px;
+  width: 100%;
+}
+/* end */
+.progress {
+  background-color: var(--bg-1);
+  padding: 100px 0;
+}
+.progress-containers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 55px;
+}
+.text-section {
+  flex: 1;
+  min-width: 300px;
+}
+.text-section h2 {
+  color: var(--primary-color);
+}
+.text-section h2::after {
+  content: "";
+  display: block;
+  width: 15%;
+  height: 2px;
+  background-color: var(--primary-color);
+  margin-top: 10px;
+}
+.text-section p {
+  font-size: var(--font-size-1);
+  font-weight: 400;
+  margin-top: 24px;
+  color: var(--pure-white);
+  font-weight: 400;
+  line-height: 26px; /* 162.5% */
+}
+.progress-bar {
+  margin: 50px 0;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+.progress-bar.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.progress-bar span {
+  display: flex;
+  justify-content: space-between;
+  color: var(--pure-white);
+  font-family: "Bodoni MT";
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 26px; /* 130% */
+}
+.bar {
+  height: 8px;
+  width: 100%;
+  background: #333;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+}
+.bar-1 {
+  background-color: #ffc1d8;
+}
+.bar-2 {
+  background-color: #cde2ff;
+}
+.bar-3 {
+  background-color: #f3d0ff;
+}
+.fill {
+  height: 100%;
+  width: 0;
+  border-radius: 5px;
+  transition: width 1.5s ease-in-out;
+}
+.fill.photography {
+  background: linear-gradient(90deg, #ff007f, #ff4da6);
+}
+.fill.videography {
+  background: linear-gradient(90deg, #007bff, #66b3ff);
+}
+.fill.event {
+  background: linear-gradient(90deg, #9900ff, #cc66ff);
+}
+.progress-text {
+  opacity: 0;
+  color: #fff;
+  font-family: "Bodoni MT";
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 26px; /* 130% */
+  transition: opacity 1.5s ease-in-out;
+}
+.image-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-width: 300px;
+}
+.image-section :nth-child(2) {
+  margin-left: -21%;
+  margin-top: 57%;
+  border: 20px solid var(--bg-1);
+  border-radius: 30px;
+}
+.image-section img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+  border-radius: 10px;
+}
+/* end */
+/* about card section start */
+.ab-card-content-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.ab-card-sec {
+  background-color: var(--bg-1);
+  padding: 140px 0 65px 0;
+}
+.team-card-sec {
+  background-color: var(--bg-1);
+  padding: 103px 0 160px 0;
+}
+.about-card-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 60px;
+}
+.about-card {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  overflow: hidden;
+}
+.about-card-img-container {
+  position: relative;
+  overflow: hidden;
+}
+.about-card .about-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  z-index: -2;
+}
+
+.about-card:hover .about-card-hover {
+  bottom: 0;
+}
+.about-card-hover {
+  position: absolute;
+  border-radius: 20px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 8px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding-bottom: 20px;
+  bottom: -100%;
+  transition: bottom 0.3s ease-in-out;
+}
+.about-card-hover div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--pure-white);
+  padding: 10px;
+  border-radius: 10px;
+  transition: background-color 0.2s ease-in-out;
+}
+.about-card-hover div:hover {
+  background-color: var(--primary-color);
+  z-index: 2 !important;
+}
+.about-card-hover div:hover svg path {
+  fill: #fff !important;
+}
+.about-card-content {
+  margin-top: 20px;
+}
+.about-card-content h3 {
+  color: var(--primary-color);
+  text-align: center;
+  font-family: "Bodoni MT";
+  font-size: 24px;
+  font-weight: 700;
+}
+.about-card-content p {
+  text-align: center;
+  font-size: var(--font-size-1);
+  font-weight: 400;
+  margin-top: 5px;
+}
+.mg-top-60 {
+  margin-top: 60px;
+}
+/* end */
+.about-page-faq {
+  padding: 80px 0 160px 0 !important;
+  background-color: var(--bg-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
