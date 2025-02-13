@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- top banner -->
+    <div class="top-banner">
+      <div class="banner">
+        <img
+          class="banner-img"
+          src="Images/About us/ash-edmonds-v0Qujn-zHJk-unsplash 1.jpg"
+          alt=""
+        />
+        <span class="banner-overlay"> </span>
+
+        <header class="ab-header">
+          <a href="index.html"><img src="Images/Homepage/Logo.png" alt="" /></a>
+          <nav>
+            <ul class="menu">
+              <svg
+                class="X-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 384 512"
+              >
+                <path
+                  d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+                />
+              </svg>
+              <li><a href="#" class="active">Home</a></li>
+              <li><a href="about.html">About us</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Packages</a></li>
+              <li><a href="#">blog</a></li>
+            </ul>
+          </nav>
+          <a href="#" id="btn">Make Appointment</a>
+          <svg
+            class="bar-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <path
+              d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM64 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L96 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"
+            />
+          </svg>
+        </header>
+        <span class="overlay"></span>
+
+        <div class="banner-content">
+          <h2>Contact Us</h2>
+          <div class="path">
+            <a href="index.html">Home</a>
+            <img src="Images/About us/arrow.svg" alt="" />
+            <a href="contact.html">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- form section -->
+    <div class="from">
+      <div class="from-container container">
+        <div class="form-content">
+          <h2>Get in Touch With Us</h2>
+          <p>
+            We’re here to answer your questions, discuss your photography needs,
+            and help bring your vision to life.
+          </p>
+        </div>
+
+        <div class="from-main">
+          <form id="contactForm" class="form-container">
+            <label>Full Name</label>
+            <input type="text" id="name" placeholder="Your Name" required />
+
+            <div class="input-row">
+              <div>
+                <label>Phone Number</label>
+                <input type="tel" id="phone" placeholder="+143" required />
+              </div>
+              <div>
+                <label>Email Address</label>
+                <input type="email" id="email" placeholder="Email" required />
+              </div>
+            </div>
+
+            <label>Write Message</label>
+            <textarea id="message" placeholder="Type here"></textarea>
+
+            <div class="checkbox-container">
+              <div>
+                <input type="checkbox" id="terms" required />
+                <label for="terms">I accept the privacy and terms.</label>
+              </div>
+              <button type="submit">SEND MESSAGE</button>
+            </div>
+          </form>
+
+          <div id="popup" class="popup">
+            <p>Form submitted successfully!</p>
+            <button onclick="closePopup()">OK</button>
+          </div>
+
+          <div class="contact-side-dive">
+            <h5>
+              Contact Us Immediately for Urgent Photography Needs or Quick
+              Assistance.
+            </h5>
+            <div class="side-dive-item">
+              <div>
+                <img src="Images/Contact-us/phonr_icon.svg" alt="" />
+              </div>
+              <p>+1 (316) 555-0116</p>
+            </div>
+
+            <div class="c-devider"></div>
+
+            <div class="side-dive-item">
+              <div>
+                <img src="Images/Contact-us/email_icon.svg" alt="" />
+              </div>
+              <p>example@email.com/p></p>
+            </div>
+
+            <div class="c-devider"></div>
+
+            <div class="side-dive-item">
+              <div>
+                <img src="Images/Contact-us/location_icon.svg" alt="" />
+              </div>
+              <p>4140 Parker Rd. Allentown New Mexico</p>
+            </div>
+          </div>
+        </div>
+
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15374.263557947055!2d-105.0176228!3d39.8008513!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876c7946fbdb4215%3A0x1b1af0e65f13fdba!2sJR%20Landscapes%20LLC!5e1!3m2!1sen!2sbd!4v1739466989466!5m2!1sen!2sbd"
+          width="600"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-container">
+          <div class="footer-logo-section">
+            <div class="footer-logo">
+              <img src="Images/Homepage/Logo.png" alt="Pictorlee Logo" />
+            </div>
+            <div class="footer-contact">
+              <p>
+                <img src="Images/Homepage/phone-icon.svg" alt="Phone" /> +1 2345
+                6789 123
+              </p>
+              <p>
+                <img src="Images/Homepage/email-icon.svg" alt="Email" />
+                example@email.com
+              </p>
+              <p>
+                <img src="Images/Homepage/location-icon.svg" alt="Location" />
+                College ST. Broklyn, NY 112233
+              </p>
+            </div>
+          </div>
+
+          <hr />
+
+          <div class="footer-links">
+            <h5>Useful Link</h5>
+            <ul>
+              <li><a class="footer-active-link" href="#">HOME</a></li>
+              <li><a href="#">ABOUT US</a></li>
+              <li><a href="#">SERVICES</a></li>
+              <li><a href="#">EVENT</a></li>
+              <li><a href="#">CONTACT US</a></li>
+              <li><a href="#">PRICING</a></li>
+              <li><a href="#">BLOG</a></li>
+            </ul>
+          </div>
+
+          <hr />
+
+          <div class="footer-newsletter">
+            <h5>Subscribe Our News Letter For Offer & Update</h5>
+            <form class="newsletter-form">
+              <input type="email" required />
+              <button type="submit">SUBSCRIBE</button>
+            </form>
+            <div class="social-icons">
+              <a href="#" class="footer-active"
+                ><img src="Images/Homepage/facebook.svg" alt="Facebook"
+              /></a>
+              <a href="#"
+                ><img src="Images/Homepage/instagram.svg" alt="Instagram"
+              /></a>
+              <a href="#"
+                ><img src="Images/Homepage/linkedin.svg" alt="LinkedIn"
+              /></a>
+              <a href="#"
+                ><img src="Images/Homepage/tiwtter.svg" alt="Twitter"
+              /></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>Copyright <span>Pictorlee</span> © 2025 All Right Reserved</p>
+          <div class="footer-bottom-links">
+            <ul>
+              <li><a href="#">Terms & Conditions</a></li>
+              <li class="list"><a href="#">Privacy Policy</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

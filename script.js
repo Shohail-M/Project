@@ -237,3 +237,51 @@ function animateProgressBars() {
 
 document.addEventListener("scroll", animateProgressBars);
 document.addEventListener("DOMContentLoaded", animateProgressBars);
+//  from contact page
+function validateInput(input, regex) {
+  if (regex.test(input.value.trim())) {
+    input.classList.remove("error");
+    input.classList.add("valid");
+    return true;
+  } else {
+    input.classList.remove("valid");
+    input.classList.add("error");
+    return false;
+  }
+}
+
+function showPopup() {
+  document.getElementById("popup").style.visibility = "visible";
+}
+
+function closePopup() {
+  document.getElementById("popup").style.visibility = "hidden";
+}
+
+document
+  .getElementById("contactForm")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
+    let name = document.getElementById("name");
+    let phone = document.getElementById("phone");
+    let email = document.getElementById("email");
+    let message = document.getElementById("message");
+    let terms = document.getElementById("terms");
+
+    let isNameValid = validateInput(name, /.+/);
+    let isPhoneValid = validateInput(phone, /^\+?[1-9]\d{1,14}$/);
+    let isEmailValid = validateInput(email, /^[^@\s]+@[^@\s]+\.[^@\s]+$/);
+    let isMessageValid = validateInput(message, /.+/);
+    let isTermsChecked = terms.checked;
+
+    if (
+      isNameValid &&
+      isPhoneValid &&
+      isEmailValid &&
+      isMessageValid &&
+      isTermsChecked
+    ) {
+      document.getElementById("contactForm").reset();
+      showPopup();
+    }
+  });
