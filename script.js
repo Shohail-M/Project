@@ -237,30 +237,11 @@ function animateProgressBars() {
 
 document.addEventListener("scroll", animateProgressBars);
 document.addEventListener("DOMContentLoaded", animateProgressBars);
-//  from contact page
-function validateInput(input, regex) {
-  if (regex.test(input.value.trim())) {
-    input.classList.remove("error");
-    input.classList.add("valid");
-    return true;
-  } else {
-    input.classList.remove("valid");
-    input.classList.add("error");
-    return false;
-  }
-}
 
-function showPopup() {
-  document.getElementById("popup").style.visibility = "visible";
-}
-
-function closePopup() {
-  document.getElementById("popup").style.visibility = "hidden";
-}
-
-document
-  .getElementById("contactForm")
-  .addEventListener("submit", function (event) {
+// Contact form validation
+const contactForm = document.getElementById("contactForm");
+if (contactForm) {
+  contactForm.addEventListener("submit", function (event) {
     event.preventDefault();
     let name = document.getElementById("name");
     let phone = document.getElementById("phone");
@@ -268,20 +249,56 @@ document
     let message = document.getElementById("message");
     let terms = document.getElementById("terms");
 
-    let isNameValid = validateInput(name, /.+/);
-    let isPhoneValid = validateInput(phone, /^\+?[1-9]\d{1,14}$/);
-    let isEmailValid = validateInput(email, /^[^@\s]+@[^@\s]+\.[^@\s]+$/);
-    let isMessageValid = validateInput(message, /.+/);
-    let isTermsChecked = terms.checked;
+    let isNameValid = validateInput(name, /.+/, "Name is required");
+    let isPhoneValid = validateInput(
+      phone,
+      /^\+?[1-9]\d{1,14}$/,
+      "Please enter a valid phone number"
+    );
+    let isEmailValid = validateInput(
+      email,
+      /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
+      "Please enter a valid email address"
+    );
+    let isMessageValid = validateInput(message, /.+/, "Message is required");
 
-    if (
-      isNameValid &&
-      isPhoneValid &&
-      isEmailValid &&
-      isMessageValid &&
-      isTermsChecked
-    ) {
-      document.getElementById("contactForm").reset();
-      showPopup();
+    if (!terms.checked) {
+      const errorDisplay =
+        terms.nextElementSibling || document.createElement("span");
+      errorDisplay.className = "error-message";
+      errorDisplay.textContent = "Please accept the terms";
+      errorDisplay.style.display = "block";
+      if (!terms.nextElementSibling) {
+        terms.parentNode.insertBefore(errorDisplay, terms.nextSibling);
+      }
     }
+
+    // ... rest of the code ...
   });
+}
+
+// Member page
+const isIndexPage = document.querySelector(".about-card-container") !== null;
+
+if (isIndexPage) {
+  // Index page functionality
+  let boxes = document.querySelectorAll(".about-card-img-container");
+
+  boxes.forEach((box, idx) => {
+    box.addEventListener("click", () => {
+      // Store the selected image number in localStorage
+      localStorage.setItem(
+        "selectedImage",
+        `Images/Member/members_photo_${idx + 1}.jpg`
+      );
+    });
+  });
+} else {
+  // Page.html functionality
+  let div = document.querySelector(".member-details-profile-img");
+  // Get the stored image path and display it
+  const selectedImage = localStorage.getItem("selectedImage");
+  if (selectedImage) {
+    div.setAttribute("src", selectedImage);
+  }
+}
