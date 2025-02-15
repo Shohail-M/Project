@@ -893,11 +893,13 @@ footer {
 
 .newsletter-form {
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 10px;
+  margin-top: 20px;
 }
 
 .newsletter-form input {
-  flex: 1;
   padding: 20px 24px;
   color: var(--pure-white);
   border-radius: 8px;
@@ -906,13 +908,15 @@ footer {
 }
 
 .newsletter-form button {
-  padding: 20px 24px;
+  padding: 0 30px;
+  height: 65px;
   background-color: var(--primary-color);
   color: var(--pure-white);
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-top: 14px;
 }
 
 .newsletter-form button:hover {
@@ -1095,6 +1099,9 @@ footer {
   font-family: Montserrat;
   font-size: 16px;
   font-weight: 500;
+}
+.path a:hover {
+  color: var(--primary-color);
 }
 .ab-header {
   position: absolute;
@@ -1956,6 +1963,7 @@ iframe {
   border: 1px solid #e2e2e2;
   background-color: var(--pure-white);
   transition: 0.1s linear;
+  width: 100%;
 }
 .services-list-1 .service-list-item-d svg {
   stroke: #232729;
@@ -2390,7 +2398,7 @@ iframe {
   h2 {
     line-height: 50px;
   }
-  .banner-content h2{
+  .banner-content h2 {
     text-align: center;
   }
 
