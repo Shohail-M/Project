@@ -1,13 +1,43 @@
 :root {
+  /* Color palette */
   --primary-color: #ac937a;
   --secondary-color: #cccccc;
   --pure-white: #fff;
   --bg-1: #161817;
   --bg-2: #212523;
+  --text-dark: #232729;
+  --border-color: #edeae8;
+  --overlay-color: rgba(0, 0, 0, 0.5);
+
+  /* Typography */
+  --font-primary: "Montserrat", sans-serif;
+  --font-secondary: "Bodoni MT", serif;
   --font-size-1: 16px;
-  --font-size-2: 18px;
-  --font-size-3: 56px;
+  --font-size-2: 20px;
+  --font-size-3: 32px;
+  --font-size-4: 56px;
+
+  /* Spacing */
+  --spacing-xs: 5px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 42px;
+  --spacing-3xl: 60px;
+
+  /* Transitions */
+  --transition-fast: 0.3s ease;
+  --transition-medium: 0.5s ease;
+  --transition-slow: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Border radius */
+  --radius-sm: 5px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
 }
+
+/* Base styles */
 * {
   margin: 0;
   padding: 0;
@@ -15,6 +45,13 @@
   scrollbar-width: thin;
   scrollbar-color: var(--primary-color) var(--secondary-color);
   scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  line-height: 1.5;
+  color: var(--secondary-color);
+  background-color: var(--bg-1);
 }
 
 p {
@@ -37,9 +74,9 @@ a:hover {
 }
 
 .container {
-  max-width: 1254px;
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 0 30px !important;
+  padding: 0 var(--spacing-md);
 }
 
 /* header start */
@@ -725,7 +762,7 @@ header #btn:hover {
 .profile div h5 {
   color: var(--pure-white);
   font-family: Montserrat;
-  font-size: 20px;
+  font-size: var(--font-size-2);
   font-weight: 600;
   line-height: 30px;
 }
@@ -734,7 +771,7 @@ header #btn:hover {
   font-size: var(--font-size-1);
   font-weight: 500;
   line-height: 24px;
-  margin-top: 5px;
+  margin-top: var(--spacing-xs);
 }
 
 .testemonial-item .quation {
@@ -764,8 +801,8 @@ header #btn:hover {
 .bloge-item-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 42px;
-  margin-top: 60px;
+  gap: var(--spacing-2xl);
+  margin-top: var(--spacing-3xl);
   align-items: center;
 }
 .bloge-item {
@@ -773,21 +810,20 @@ header #btn:hover {
 }
 .bloge-item img {
   width: 100%;
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
 }
 .bloge-item h3 {
   color: var(--pure-white);
-  font-size: 32px;
+  font-size: var(--font-size-3);
   font-weight: 400;
   line-height: 40px;
-  margin-top: 24px;
+  margin-top: var(--spacing-lg);
 }
 .bloge-item p {
   color: var(--secondary-color);
-  font-size: 14px;
+  font-size: var(--font-size-1);
   font-weight: 500;
-  line-height: normal;
-  margin-top: 42px;
+  margin-top: var(--spacing-2xl);
 }
 
 /* end */
@@ -797,7 +833,7 @@ footer {
   background-color: var(--bg-2);
   padding: 100px 0 50px;
   color: var(--pure-white);
-  font-family: Montserrat, sans-serif;
+  font-family: var(--font-primary);
 }
 
 .footer-container {
@@ -817,22 +853,22 @@ footer {
 }
 
 .footer-logo h2 {
-  font-size: 24px;
+  font-size: var(--font-size-2);
   font-weight: 700;
 }
 
 .footer-contact {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: var(--spacing-md);
 }
 
 .footer-contact p {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--spacing-sm);
   color: var(--pure-white);
-  font-size: 20px;
+  font-size: var(--font-size-2);
   font-weight: 500;
   line-height: 16px;
 }
@@ -843,8 +879,8 @@ footer {
 .footer-links h5 {
   margin-bottom: 67px;
   color: var(--pure-white);
-  font-family: "Bodoni MT";
-  font-size: 32px;
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-3);
   font-weight: 400;
   line-height: 21px;
 }
@@ -858,17 +894,16 @@ footer {
 
 .footer-links li {
   margin-bottom: 28px;
-  font-family: Montserrat;
+  font-family: var(--font-primary);
   font-size: var(--font-size-1);
   font-weight: 500;
-  line-height: normal;
   text-transform: uppercase;
 }
 
 .footer-links a {
   color: var(--pure-white);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color var(--transition-fast);
 }
 .footer-active-link {
   color: var(--primary-color) !important;
@@ -883,10 +918,10 @@ footer {
 }
 
 .footer-newsletter h5 {
-  margin-bottom: 20px;
+  margin-bottom: var(--spacing-md);
   color: var(--pure-white);
-  font-family: "Bodoni MT";
-  font-size: 32px;
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-3);
   font-weight: 400;
   line-height: 40px;
 }
@@ -895,16 +930,16 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
 }
 
 .newsletter-form input {
   padding: 20px 24px;
   color: var(--pure-white);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   border: 1px solid #444846;
-  background-color: #212523;
+  background-color: var(--bg-2);
 }
 
 .newsletter-form button {
@@ -913,14 +948,14 @@ footer {
   background-color: var(--primary-color);
   color: var(--pure-white);
   border: none;
-  border-radius: 5px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color var(--transition-fast);
   margin-top: 14px;
 }
 
 .newsletter-form button:hover {
-  background-color: #8a7460;
+  background-color: var(--secondary-color);
 }
 
 .social-icons {
@@ -1000,7 +1035,7 @@ footer {
 /* Animation classes */
 .fade-in-hidden {
   opacity: 0;
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition-slow);
 }
 
 /* Slide up animation */
@@ -2464,6 +2499,37 @@ iframe {
     width: 100%;
   }
   .services-left-section .tow-img-sec img {
+    width: 100%;
+  }
+}
+
+/* Media Queries */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    --font-size-3: 28px;
+    --font-size-4: 42px;
+  }
+
+  .footer-container {
+    flex-direction: column;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .newsletter-form input,
+  .newsletter-form button {
     width: 100%;
   }
 }
