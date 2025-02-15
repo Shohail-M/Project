@@ -1,374 +1,315 @@
 /**
- * Global Configuration
+ * Mobile Menu Initialization
+ * Handles the mobile menu toggle functionality and overlay
  */
-const CONFIG = {
-  animations: {
-    scroll: {
-      threshold: 0.2,
-      margin: "0px 0px -20px 0px",
-      speed: 1,
-    },
-    progress: {
-      threshold: 0.5,
-      interval: 15,
-    },
-  },
-  selectors: {
-    menu: {
-      bar: ".bar-icon",
-      menu: ".menu",
-      overlay: ".overlay",
-      close: ".X-icon",
-    },
-    animations: {
-      elements:
-        ".services-card, .dream div, .faq-item, .testemonial-item, .bloge-item",
-      progress: ".progress-bar",
-    },
-    gallery: {
-      filters: ".filter",
-      items: ".gallery-item",
-    },
-    forms: {
-      contact: "#contactForm",
-      newsletter: ".newsletter-form",
-    },
-  },
-  validation: {
-    patterns: {
-      name: { regex: /.+/, message: "Name is required" },
-      phone: {
-        regex: /^\+?[1-9]\d{1,14}$/,
-        message: "Please enter a valid phone number",
-      },
-      email: {
-        regex: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
-        message: "Please enter a valid email address",
-      },
-      message: { regex: /.+/, message: "Message is required" },
-    },
-  },
+const initMobileMenu = () => {
+  // Get DOM elements
+  const bar = document.querySelector(".bar-icon");
+  const menu = document.querySelector(".menu");
+  const overlay = document.querySelector(".overlay");
+  const closeBar = document.querySelector(".X-icon");
+
+  // Toggle menu open/close
+  const toggleMenu = () => {
+    menu.classList.toggle("open");
+    overlay.classList.toggle("overlay-open");
+  };
+
+  // Close menu function
+  const closeMenu = () => {
+    menu.classList.remove("open");
+    overlay.classList.remove("overlay-open");
+  };
+
+  // Event listeners for menu interactions
+  bar.addEventListener("click", toggleMenu);
+  overlay.addEventListener("click", closeMenu);
+  closeBar.addEventListener("click", closeMenu);
 };
 
 /**
- * Utility Functions
+ * Logo Slider Animation
+ * Creates an infinite scrolling animation for logos
+ * Uses RequestAnimationFrame for smooth performance
  */
-const Utils = {
-  /**
-   * Safely query DOM elements
-   */
-  dom: {
-    get: (selector) => document.querySelector(selector),
-    getAll: (selector) => document.querySelectorAll(selector),
-    create: (tag, className) => {
-      const element = document.createElement(tag);
-      if (className) element.className = className;
-      return element;
-    },
-  },
+const initLogoSlider = () => {
+  const logosContainer = document.getElementById("logos");
+  if (!logosContainer) return;
 
-  /**
-   * Animation utilities
-   */
-  animation: {
-    debounce: (func, wait) => {
-      let timeout;
-      return function executedFunction(...args) {
-        const later = () => {
-          clearTimeout(timeout);
-          func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-      };
-    },
+  // Clone logos once and store length
+  const originalContent = logosContainer.innerHTML;
+  logosContainer.innerHTML = originalContent + originalContent;
+  const halfWidth = logosContainer.scrollWidth / 2;
 
-    requestFrame: (callback) => {
-      let rafId;
-      const animate = () => {
-        callback();
-        rafId = requestAnimationFrame(animate);
-      };
-      animate();
-      return () => cancelAnimationFrame(rafId);
-    },
-  },
+  let scrollAmount = 0;
+  let rafId;
+  let isAnimating = false;
+
+  const scrollLogos = () => {
+    if (!isAnimating) return;
+
+    scrollAmount -= 1;
+    logosContainer.style.transform = `translateX(${scrollAmount}px)`;
+    if (Math.abs(scrollAmount) >= halfWidth) scrollAmount = 0;
+
+    rafId = requestAnimationFrame(scrollLogos);
+  };
+
+  const startAnimation = () => {
+    if (isAnimating) return;
+    isAnimating = true;
+    scrollLogos();
+  };
+
+  const stopAnimation = () => {
+    isAnimating = false;
+    cancelAnimationFrame(rafId);
+  };
+
+  document.addEventListener("visibilitychange", () =>
+    document.hidden ? stopAnimation() : startAnimation()
+  );
+
+  startAnimation();
 };
 
 /**
- * Mobile Menu Controller
+ * FAQ Section Initialization
+ * Handles accordion-style FAQ functionality with animations
+ * Uses event delegation for better performance
  */
-class MobileMenuController {
-  constructor() {
-    this.elements = {
-      bar: Utils.dom.get(CONFIG.selectors.menu.bar),
-      menu: Utils.dom.get(CONFIG.selectors.menu.menu),
-      overlay: Utils.dom.get(CONFIG.selectors.menu.overlay),
-      closeBar: Utils.dom.get(CONFIG.selectors.menu.close),
-    };
+const initFAQ = () => {
+  const faqSection = document.querySelector(".faq-section");
+  if (!faqSection) return;
 
-    if (Object.values(this.elements).some((el) => !el)) return;
-    this.initEventListeners();
-  }
+  faqSection.addEventListener("click", (e) => {
+    const question = e.target.closest(".faq-question");
+    if (!question) return;
 
-  initEventListeners() {
-    this.elements.bar.addEventListener("click", () => this.toggleMenu());
-    this.elements.overlay.addEventListener("click", () => this.closeMenu());
-    this.elements.closeBar.addEventListener("click", () => this.closeMenu());
-  }
+    const answer = question.nextElementSibling;
+    const icon = question.querySelector(".toggle-icon");
 
-  toggleMenu() {
-    this.elements.menu.classList.toggle("open");
-    this.elements.overlay.classList.toggle("overlay-open");
-  }
-
-  closeMenu() {
-    this.elements.menu.classList.remove("open");
-    this.elements.overlay.classList.remove("overlay-open");
-  }
-}
-
-/**
- * Logo Slider Controller
- */
-class LogoSliderController {
-  constructor() {
-    this.container = Utils.dom.get("#logos");
-    if (!this.container) return;
-
-    this.scrollAmount = 0;
-    this.stopAnimation = null;
-    this.init();
-  }
-
-  init() {
-    this.container.innerHTML += this.container.innerHTML;
-    this.startAnimation();
-    this.handleVisibilityChange();
-  }
-
-  startAnimation() {
-    this.stopAnimation = Utils.animation.requestFrame(() => {
-      this.scrollAmount -= CONFIG.animations.scroll.speed;
-      this.container.style.transform = `translateX(${this.scrollAmount}px)`;
-
-      if (Math.abs(this.scrollAmount) >= this.container.scrollWidth / 2) {
-        this.scrollAmount = 0;
+    // Close other open answers (accordion functionality)
+    document.querySelectorAll(".faq-answer.open").forEach((openAnswer) => {
+      if (openAnswer !== answer) {
+        openAnswer.style.maxHeight = null;
+        openAnswer.classList.remove("open");
+        openAnswer.previousElementSibling.querySelector(
+          ".toggle-icon"
+        ).style.transform = "rotate(0deg)";
       }
     });
-  }
 
-  handleVisibilityChange() {
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden) {
-        this.stopAnimation?.();
-      } else {
-        this.startAnimation();
-      }
-    });
-  }
-}
+    // Toggle current answer
+    const isOpen = answer.style.maxHeight;
+    answer.style.maxHeight = isOpen ? null : `${answer.scrollHeight}px`;
+    answer.classList.toggle("open");
+    icon.style.transform = isOpen ? "rotate(0deg)" : "rotate(-45deg)";
+  });
+};
 
 /**
- * Scroll Animation Controller
+ * Scroll Animations
+ * Implements scroll-based animations using IntersectionObserver
+ * Efficiently handles multiple animation types for different elements
  */
-class ScrollAnimationController {
-  constructor() {
-    this.observer = this.createObserver();
-    this.initAnimations();
-  }
+const initScrollAnimations = () => {
+  const observerOptions = {
+    threshold: 0.2,
+    rootMargin: "0px 0px -20px 0px",
+  };
 
-  createObserver() {
-    return new IntersectionObserver(
-      (entries) => this.handleIntersection(entries),
-      {
-        threshold: CONFIG.animations.scroll.threshold,
-        rootMargin: CONFIG.animations.scroll.margin,
-      }
-    );
-  }
+  const animationMap = {
+    "services-card": "slide-up",
+    "faq-item": "slide-right",
+    "testemonial-item": "slide-up",
+    "bloge-item": "slide-left",
+  };
 
-  handleIntersection(entries) {
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("fade-in-visible");
-        this.observer.unobserve(entry.target);
+        observer.unobserve(entry.target);
       }
     });
-  }
+  }, observerOptions);
 
-  initAnimations() {
-    Utils.dom
-      .getAll(CONFIG.selectors.animations.elements)
-      .forEach((element, index) => {
-        const animationType = this.getAnimationType(element);
-        element.classList.add(
-          "fade-in-hidden",
-          animationType,
-          `delay-${(index % 5) + 1}`
-        );
-        this.observer.observe(element);
-      });
-  }
+  document
+    .querySelectorAll(
+      ".services-card, .dream div, .faq-item, .testemonial-item, .bloge-item"
+    )
+    .forEach((element, index) => {
+      const elementClass = [...element.classList].find(
+        (cls) => animationMap[cls]
+      );
+      const animationType = animationMap[elementClass] || "scale";
 
-  getAnimationType(element) {
-    const classMap = {
-      "services-card": "slide-up",
-      "faq-item": "slide-right",
-      "testemonial-item": "slide-up",
-      "bloge-item": "slide-left",
-    };
-
-    return (
-      Object.entries(classMap).find(([className]) =>
-        element.classList.contains(className)
-      )?.[1] || "scale"
-    );
-  }
-}
+      element.classList.add(
+        "fade-in-hidden",
+        animationType,
+        `delay-${(index % 5) + 1}`
+      );
+      observer.observe(element);
+    });
+};
 
 /**
- * Form Validation Controller
+ * Gallery Filter Initialization
+ * Implements filtering functionality for the image gallery
+ * Includes smooth animations for filter transitions
  */
-class FormValidationController {
-  constructor() {
-    this.form = Utils.dom.get(CONFIG.selectors.forms.contact);
-    if (!this.form) return;
+const initGalleryFilter = () => {
+  const filterButtons = document.querySelectorAll(".filter");
+  const galleryItems = document.querySelectorAll(".gallery-item");
+  if (!filterButtons.length || !galleryItems.length) return;
 
-    this.initFormValidation();
-  }
+  // Add animation styles to document
+  const styleSheet = document.createElement("style");
+  styleSheet.textContent = `
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+  `;
+  document.head.appendChild(styleSheet);
 
-  initFormValidation() {
-    this.form.addEventListener("submit", (e) => this.handleSubmit(e));
-    this.initInputValidation();
-  }
-
-  initInputValidation() {
-    Object.keys(CONFIG.validation.patterns).forEach((field) => {
-      const input = Utils.dom.get(`#${field}`);
-      if (input) {
-        input.addEventListener(
-          "input",
-          Utils.animation.debounce(() => {
-            this.validateInput(input, CONFIG.validation.patterns[field]);
-          }, 300)
-        );
-      }
+  // Filter gallery items function
+  const filterGallery = (filterValue) => {
+    galleryItems.forEach((item) => {
+      const show =
+        filterValue === "all" || item.dataset.category === filterValue;
+      item.style.display = show ? "block" : "none";
+      if (show) item.style.animation = "fadeIn 0.5s ease forwards";
     });
-  }
+  };
 
-  handleSubmit(event) {
-    event.preventDefault();
+  // Event delegation for filter buttons
+  const buttonContainer = filterButtons[0].parentElement;
+  buttonContainer.addEventListener("click", (e) => {
+    const button = e.target.closest(".filter");
+    if (!button) return;
 
-    const isValid = Object.entries(CONFIG.validation.patterns).every(
-      ([field, pattern]) => {
-        const input = Utils.dom.get(`#${field}`);
-        return input ? this.validateInput(input, pattern) : true;
-      }
-    );
-
-    if (isValid) {
-      this.submitForm();
-    }
-  }
-
-  validateInput(input, { regex, message }) {
-    const isValid = regex.test(input.value);
-    this.toggleError(input, !isValid, message);
-    return isValid;
-  }
-
-  toggleError(input, show, message) {
-    let errorDisplay = input.nextElementSibling;
-
-    if (!errorDisplay?.classList.contains("error-message")) {
-      errorDisplay = Utils.dom.create("span", "error-message");
-      input.parentNode.insertBefore(errorDisplay, input.nextSibling);
-    }
-
-    errorDisplay.textContent = message;
-    errorDisplay.style.display = show ? "block" : "none";
-  }
-
-  async submitForm() {
-    try {
-      const formData = new FormData(this.form);
-      // Add form submission logic here
-      console.log("Form submitted:", Object.fromEntries(formData));
-    } catch (error) {
-      console.error("Form submission error:", error);
-    }
-  }
-}
+    // Update active state and filter
+    filterButtons.forEach((btn) => btn.classList.remove("filter-active"));
+    button.classList.add("filter-active");
+    filterGallery(button.dataset.filter);
+  });
+};
 
 /**
- * Progress Bar Controller
- */
-class ProgressBarController {
-  constructor() {
-    this.observer = this.createObserver();
-    this.initProgressBars();
-  }
-
-  createObserver() {
-    return new IntersectionObserver(
-      (entries) => this.handleIntersection(entries),
-      { threshold: CONFIG.animations.progress.threshold }
-    );
-  }
-
-  initProgressBars() {
-    Utils.dom.getAll(CONFIG.selectors.animations.progress).forEach((bar) => {
-      this.observer.observe(bar);
-    });
-  }
-
-  handleIntersection(entries) {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        this.animateProgressBar(entry.target);
-        this.observer.unobserve(entry.target);
-      }
-    });
-  }
-
-  animateProgressBar(bar) {
-    const fill = bar.querySelector(".fill");
-    const text = bar.querySelector(".progress-text");
-    const targetValue = parseInt(bar.dataset.width);
-
-    fill.style.width = `${targetValue}%`;
-    text.style.opacity = 1;
-
-    let count = 0;
-    const increment = targetValue > 50 ? 2 : 1;
-    const interval = setInterval(() => {
-      if (count >= targetValue) {
-        text.textContent = `${targetValue}%`;
-        clearInterval(interval);
-      } else {
-        count += increment;
-        text.textContent = `${count}%`;
-      }
-    }, CONFIG.animations.progress.interval);
-  }
-}
-
-/**
- * Initialize all controllers when DOM is ready
+ * Initialize all functionality when DOM is ready
+ * Ensures all elements are available before running scripts
  */
 document.addEventListener("DOMContentLoaded", () => {
-  new MobileMenuController();
-  new LogoSliderController();
-  new ScrollAnimationController();
-  new FormValidationController();
-  new ProgressBarController();
+  initMobileMenu();
+  initLogoSlider();
+  initFAQ();
+  initScrollAnimations();
+  initGalleryFilter();
 });
 
-// Handle reduced motion preference
-if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  document.documentElement.style.setProperty(
-    "--transition-duration",
-    "0.001ms"
-  );
+// end
+function animateProgressBars() {
+  const progressBars = document.querySelectorAll(".progress-bar:not(.visible)");
+  const threshold = window.innerHeight - 100;
+
+  progressBars.forEach((bar) => {
+    if (bar.getBoundingClientRect().top < threshold) {
+      bar.classList.add("visible");
+      const fill = bar.querySelector(".fill");
+      const text = bar.querySelector(".progress-text");
+      const targetValue = parseInt(bar.dataset.width);
+
+      fill.style.width = `${targetValue}%`;
+      text.style.opacity = 1;
+
+      let count = 0;
+      const animateCount = () => {
+        text.textContent = `${count}%`;
+        if (count < targetValue) {
+          count++;
+          requestAnimationFrame(animateCount);
+        }
+      };
+      animateCount();
+    }
+  });
 }
+
+// Throttle scroll event for better performance
+let scrollTimeout;
+document.addEventListener("scroll", () => {
+  if (scrollTimeout) return;
+  scrollTimeout = setTimeout(() => {
+    animateProgressBars();
+    scrollTimeout = null;
+  }, 50);
+});
+
+// Contact form validation
+const contactForm = document.getElementById("contactForm");
+if (contactForm) {
+  contactForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    let name = document.getElementById("name");
+    let phone = document.getElementById("phone");
+    let email = document.getElementById("email");
+    let message = document.getElementById("message");
+    let terms = document.getElementById("terms");
+
+    let isNameValid = validateInput(name, /.+/, "Name is required");
+    let isPhoneValid = validateInput(
+      phone,
+      /^\+?[1-9]\d{1,14}$/,
+      "Please enter a valid phone number"
+    );
+    let isEmailValid = validateInput(
+      email,
+      /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
+      "Please enter a valid email address"
+    );
+    let isMessageValid = validateInput(message, /.+/, "Message is required");
+
+    if (!terms.checked) {
+      const errorDisplay =
+        terms.nextElementSibling || document.createElement("span");
+      errorDisplay.className = "error-message";
+      errorDisplay.textContent = "Please accept the terms";
+      errorDisplay.style.display = "block";
+      if (!terms.nextElementSibling) {
+        terms.parentNode.insertBefore(errorDisplay, terms.nextSibling);
+      }
+    }
+
+    // ... rest of the code ...
+  });
+}
+
+// Simplified member page handling
+const memberHandler = {
+  initIndex() {
+    document
+      .querySelectorAll(".about-card-img-container")
+      .forEach((box, idx) => {
+        box.addEventListener("click", () => {
+          localStorage.setItem(
+            "selectedImage",
+            `Images/Member/members_photo_${idx + 1}.jpg`
+          );
+        });
+      });
+  },
+
+  initMemberPage() {
+    const profileImg = document.querySelector(".member-details-profile-img");
+    if (profileImg) {
+      const selectedImage = localStorage.getItem("selectedImage");
+      if (selectedImage) profileImg.setAttribute("src", selectedImage);
+    }
+  },
+};
+
+document.querySelector(".about-card-container")
+  ? memberHandler.initIndex()
+  : memberHandler.initMemberPage();
